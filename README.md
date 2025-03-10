@@ -25,3 +25,14 @@ Ensure you have the following installed:
 Python 3.x
 
 Required dependencies (install using pip)
+
+
+Usage
+
+Launch the application and navigate through the dashboard.
+
+Use the search bar to find processes quickly.
+
+Click on a process to view detailed information.
+
+Terminate or restart processes as needed.
