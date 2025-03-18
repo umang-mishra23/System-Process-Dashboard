@@ -83,5 +83,10 @@ fig.patch.set_facecolor('#1e1e2e')
 canvas = FigureCanvasTkAgg(fig, master=root)
 canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
+# Copyright Label
+copyright_label = tk.Label(root, text="© 2025 Umang Mishra. All Rights Reserved.",
+                           font=("Arial", 12), fg="gray", bg="#222831")
+copyright_label.pack(side=tk.BOTTOM, pady=5)
+
 update_system_stats()
 root.mainloop()
