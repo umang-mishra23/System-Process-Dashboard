@@ -8,15 +8,13 @@ import threading
 import time
 from ttkthemes import ThemedTk
 
-# Graph Data Variables
+
 cpu_data, memory_data, gpu_data = [], [], []
 
-# Function to update system stats
 def update_system_stats():
     cpu_usage = psutil.cpu_percent()
     memory_usage = psutil.virtual_memory().percent
 
-    # GPU Data
     gpu_usage = "N/A"
     gpus = GPUtil.getGPUs()
     if gpus:
@@ -29,7 +27,6 @@ def update_system_stats():
     gpu_display = f"{gpu_usage:.2f}%" if isinstance(gpu_usage, (int, float)) else "N/A"
     system_label.config(text=f"CPU: {cpu_usage}% | RAM: {memory_usage}% | GPU: {gpu_display} | Up: {upload_speed} | Down: {download_speed}")
 
-    # Graph Data Management
     cpu_data.append(cpu_usage)
     memory_data.append(memory_usage)
     gpu_data.append(gpu_usage)
@@ -43,7 +40,6 @@ def update_system_stats():
 
     root.after(1000, update_system_stats)
 
-# Function to update graphs
 def update_graphs():
     ax1.clear()
     ax2.clear()
@@ -64,26 +60,22 @@ def update_graphs():
 
     canvas.draw()
 
-# Initialize GUI
 root = ThemedTk(theme="arc")
 root.title("Modern Task Manager")
 root.geometry("1600x1000")
 root.configure(bg="#222831")
 
-# System Info Label
 system_label = tk.Label(root, text="", font=("Arial", 18, "bold"), fg="white", bg="#222831")
 system_label.pack(pady=10)
 
 style = ttk.Style()
 style.configure("Treeview", font=("Segoe UI", 14))
 
-# Graph Setup
 fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(12, 8), dpi=100)
 fig.patch.set_facecolor('#1e1e2e')
 canvas = FigureCanvasTkAgg(fig, master=root)
 canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
-# Copyright Label
 copyright_label = tk.Label(root, text="© 2025 Umang Mishra. All Rights Reserved.",
                            font=("Arial", 12), fg="gray", bg="#222831")
 copyright_label.pack(side=tk.BOTTOM, pady=5)
